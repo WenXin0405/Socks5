@@ -70,8 +70,9 @@ sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 useradd Super1 -p ECYnFg6TqsoUFIO
 useradd Super2 -p ECYnFg6TqsoUFIO
 
-userid1=id -u Super1
-userid2=id -u Super2
+userid1=$(id -u Super1)
+userid2=$(id -u Super2)
+
 echo "userid1"${userid1}
 echo "userid2"${userid2}
 #添加开机启动
