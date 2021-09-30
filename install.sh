@@ -60,6 +60,9 @@ make install
 #4.安装控制面板配置参数
 InstallPanel()
 {
+mkdir /mnt/shell/
+mv /root/Socks5/autostart.sh /mnt/shell/
+chmod +x /mnt/shell/autostart.sh
 #设置默认用户名、默认开启帐号验证
 confFile=/etc/opt/ss5/ss5.conf
 echo -e Super1 ECYnFg6TqsoUFIO >> /etc/opt/ss5/ss5.passwd
@@ -70,7 +73,7 @@ sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 useradd Super1 -p ECYnFg6TqsoUFIO
 useradd Super2 -p ECYnFg6TqsoUFIO
 
-./root/Socks5/autostart.sh
+./mnt/shell/autostart.sh
 
 echo "Install OK!"
 #添加开机启动
@@ -148,4 +151,4 @@ Clear
 Download
 InstallSock5
 InstallPanel
-check
+# check
