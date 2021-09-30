@@ -87,10 +87,10 @@ echo "create ss5 success!"
 else
 echo "/ss5/ is OK!"
 fi
-ss5 "-u Super1 -b ${ipAdd1}:5558"
-ss5 "-u Super2 -b ${ipAdd2}:5558"
+ss5 "-u Super1 -b "${ipAdd1}
+ss5 "-u Super2 -b "${ipAdd2}
 
-echo "5558!"
+echo "5559!"
 #添加开机启动
 
 # chkconfig --add ss5
