@@ -13,5 +13,11 @@ echo "create ss5 success!"
 else
 echo "/ss5/ is OK!"
 fi
-ss5 "-u Super1 -b "${ipAdd1}
-ss5 "-u Super2 -b "${ipAdd2}
+ss5 -u Super1 -b ${ipAdd1}
+ss5 -u Super2 -b ${ipAdd2}
+
+iptables -t mangle -A OUTPUT -m owner --uid-owner ${userid1} -j MARK --set-mark ${userid1}
+iptables -t nat -A POSTROUTING -m mark --mark ${userid1} -j SNAT --to-source ${ipAdd1}
+
+iptables -t mangle -A OUTPUT -m owner --uid-owner ${userid2} -j MARK --set-mark ${userid2}
+iptables -t nat -A POSTROUTING -m mark --mark ${userid2} -j SNAT --to-source ${ipAdd2}
