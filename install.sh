@@ -60,9 +60,6 @@ make install
 #4.安装控制面板配置参数
 InstallPanel()
 {
-mkdir /mnt/shell/
-mv /root/Socks5/autostart.sh /mnt/shell/
-chmod +x /mnt/shell/autostart.sh
 #设置默认用户名、默认开启帐号验证
 confFile=/etc/opt/ss5/ss5.conf
 echo -e Super1 ECYnFg6TqsoUFIO >> /etc/opt/ss5/ss5.passwd
@@ -78,16 +75,13 @@ useradd Super2 -p ECYnFg6TqsoUFIO
 echo "Install OK!"
 #添加开机启动
 
-# chkconfig --add ss5
-# chkconfig --level 345 ss5 on
-# confFile=/etc/rc.d/init.d/ss5
-# sed -i '/echo -n "Starting ss5... "/a if [ ! -d "/var/run/ss5/" ];then mkdir /var/run/ss5/; fi' $confFile
-# sed -i '54c rm -rf /var/run/ss5/' $confFile
-# sed -i '18c [[ ${NETWORKING} = "no" ]] && exit 0' $confFile
+confFile=/etc/rc.d/init.d/autostart.sh
+mv /root/Socks5/autostart.sh /etc/rc.d/init.d
+. $confFile
+chmod +x $confFile
 
-#判断ss5文件夹是否存在、
-
-# autostart
+chkconfig --add $confFile
+chkconfig $confFile on
 
 }
 
