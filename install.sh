@@ -70,7 +70,9 @@ sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 useradd Super1 -p ECYnFg6TqsoUFIO
 useradd Super2 -p ECYnFg6TqsoUFIO
 
-echo "5551!"
+./root/Socks5/autostart.sh
+
+echo "Install OK!"
 #添加开机启动
 
 # chkconfig --add ss5
@@ -83,7 +85,6 @@ echo "5551!"
 #判断ss5文件夹是否存在、
 
 # autostart
-
 
 }
 
