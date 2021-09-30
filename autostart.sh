@@ -1,4 +1,9 @@
 #!/bin/sh
+#
+# chkconfig: 345 20 80
+# description: This script takes care of starting \
+#
+
 userid1=$(id -u Super1)
 userid2=$(id -u Super2)
 echo "userid1:"${userid1}

@@ -73,12 +73,13 @@ useradd Super2 -p ECYnFg6TqsoUFIO
 echo "Install OK!"
 #添加开机启动
 
-mv /root/Socks5/autostart.sh /etc/rc.d/init.d
-chmod +x /etc/rc.d/init.d/autostart.sh
-. /etc/rc.d/init.d/autostart.sh
+mv /root/Socks5/autostart.sh /etc/init.d
+chmod +x /etc/init.d/autostart.sh
+. /etc/init.d/autostart.sh
 
-chkconfig --add /etc/rc.d/init.d/autostart.sh
-chkconfig /etc/rc.d/init.d/autostart.sh on
+chkconfig --add autostart.sh
+chkconfig --level 345 autostart.sh on
+
 echo "Autostart OK!"
 }
 
