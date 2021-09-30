@@ -89,7 +89,7 @@ if [ ! -d "/var/run/ss5/" ];then
 mkdir /var/run/ss5/
 echo "create ss5 success!"
 else
-echo "/ss5/ is OK!"
+echo "/ss5/ is OK1111111111!"
 fi
 }
 
