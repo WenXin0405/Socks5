@@ -90,7 +90,7 @@ fi
 ss5 "-u Super1 -b "${ipAdd1}
 ss5 "-u Super2 -b "${ipAdd2}
 
-echo "5559!"
+echo "5557!"
 #添加开机启动
 
 # chkconfig --add ss5
