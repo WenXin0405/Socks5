@@ -70,19 +70,16 @@ sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 useradd Super1 -p ECYnFg6TqsoUFIO
 useradd Super2 -p ECYnFg6TqsoUFIO
 
-. /mnt/shell/autostart.sh
-
 echo "Install OK!"
 #添加开机启动
 
-confFile=/etc/rc.d/init.d/autostart.sh
 mv /root/Socks5/autostart.sh /etc/rc.d/init.d
-. $confFile
-chmod +x $confFile
+chmod +x /etc/rc.d/init.d/autostart.sh
+. /etc/rc.d/init.d/autostart.sh
 
-chkconfig --add $confFile
-chkconfig $confFile on
-
+chkconfig --add /etc/rc.d/init.d/autostart.sh
+chkconfig /etc/rc.d/init.d/autostart.sh on
+echo "Autostart OK!"
 }
 
 #5.检测是否安装完整
