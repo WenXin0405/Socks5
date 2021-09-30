@@ -106,25 +106,23 @@ make
 make install
 }
 
-# #4.安装控制面板配置参数
-# InstallPanel()
-# {
-# #cd  /root/Socks5
+#4.安装控制面板配置参数
+InstallPanel()
+{
+#cd  /root/Socks5
 # mv /root/Socks5/service.sh /etc/opt/ss5/
 # mv /root/Socks5/user.sh /etc/opt/ss5/
 # mv /root/Socks5/version.txt /etc/opt/ss5/
 # mv /root/Socks5/ss5 /etc/sysconfig/
 # mv /root/Socks5/s5 /usr/local/bin/
-# chmod +x /usr/local/bin/s5
+chmod +x /usr/local/bin/s5
 
-# #设置默认用户名、默认开启帐号验证
-# uname="123456"
-# upasswd="654321"
-# port="5555"
-# confFile=/etc/opt/ss5/ss5.conf
-# echo -e $uname $upasswd >> /etc/opt/ss5/ss5.passwd
-# sed -i '87c auth    0.0.0.0/0               -               u' $confFile
-# sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
+#设置默认用户名、默认开启帐号验证
+confFile=/etc/opt/ss5/ss5.conf
+echo -e Super1 ECYnFg6TqsoUFIO >> /etc/opt/ss5/ss5.passwd
+echo -e Super2 ECYnFg6TqsoUFIO >> /etc/opt/ss5/ss5.passwd
+sed -i '87c auth    0.0.0.0/0               -               u' $confFile
+sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 
 
 # #添加开机启动
@@ -143,7 +141,7 @@ make install
 # else
 # echo "/ss5/ is OK!"
 # fi
-# }
+}
 
 # #5.检测是否安装完整
 # check(){
@@ -225,5 +223,5 @@ rm -rf /var/log/ss5
 Clear
 Download
 InstallSock5
-# InstallPanel
+InstallPanel
 # check
