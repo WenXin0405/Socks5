@@ -60,14 +60,6 @@ make install
 #4.安装控制面板配置参数
 InstallPanel()
 {
-#cd  /root/Socks5
-# mv /root/Socks5/service.sh /etc/opt/ss5/
-# mv /root/Socks5/user.sh /etc/opt/ss5/
-# mv /root/Socks5/version.txt /etc/opt/ss5/
-# mv /root/Socks5/ss5 /etc/sysconfig/
-# mv /root/Socks5/s5 /usr/local/bin/
-# chmod +x /usr/local/bin/s5
-
 #设置默认用户名、默认开启帐号验证
 confFile=/etc/opt/ss5/ss5.conf
 echo -e Super1 ECYnFg6TqsoUFIO >> /etc/opt/ss5/ss5.passwd
@@ -75,9 +67,15 @@ echo -e Super2 ECYnFg6TqsoUFIO >> /etc/opt/ss5/ss5.passwd
 sed -i '87c auth    0.0.0.0/0               -               u' $confFile
 sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 
+useradd Super1 -p ECYnFg6TqsoUFIO
+useradd Super2 -p ECYnFg6TqsoUFIO
 
-# #添加开机启动
-# chmod +x /etc/init.d/ss5
+userid1=id -u Super1
+userid2=id -u Super2
+echo "userid1"${userid1}
+echo "userid2"${userid2}
+#添加开机启动
+chmod +x /etc/init.d/ss5
 # chkconfig --add ss5
 # chkconfig --level 345 ss5 on
 # confFile=/etc/rc.d/init.d/ss5
@@ -85,74 +83,57 @@ sed -i '203c permit u	0.0.0.0/0	-	0.0.0.0/0	-	-	-	-	-' $confFile
 # sed -i '54c rm -rf /var/run/ss5/' $confFile
 # sed -i '18c [[ ${NETWORKING} = "no" ]] && exit 0' $confFile
 
-# #判断ss5文件夹是否存在、
-# if [ ! -d "/var/run/ss5/" ];then
-# mkdir /var/run/ss5/
-# echo "create ss5 success!"
-# else
-# echo "/ss5/ is OK!"
-# fi
+#判断ss5文件夹是否存在、
+if [ ! -d "/var/run/ss5/" ];then
+mkdir /var/run/ss5/
+echo "create ss5 success!"
+else
+echo "/ss5/ is OK!"
+fi
 }
 
-# #5.检测是否安装完整
-# check(){
-# cd /root
-# rm -rf /root/Socks5
-# rm -rf /root/install.sh
-# errorMsg=""
-# isError=false
-# if [ ! -f "/usr/local/bin/s5" ] ; then
-# 		errorMsg=${errorMsg}"001|"
-# 		isError=true
-		
-# fi
-# if  [ ! -f "/etc/opt/ss5/service.sh" ]; then
-# 	errorMsg=${errorMsg}"002|" 
-# 	isError=true
-	
-# fi
-# if  [ ! -f "/etc/opt/ss5/user.sh" ]; then
-# 	errorMsg=${errorMsg}"003|"
-# 	isError=true	
-# fi
+#5.检测是否安装完整
+check(){
+cd /root
+rm -rf /root/Socks5
+rm -rf /root/install.sh
+errorMsg=""
+isError=false
+if  [ ! -f "/etc/opt/ss5/ss5.conf" ]; then
+	errorMsg=${errorMsg}"001|"
+	isError=true	
+fi
 
-# if  [ ! -f "/etc/opt/ss5/ss5.conf" ]; then
-# 	errorMsg=${errorMsg}"004|"
-# 	isError=true	
-# fi
+if [ "$isError" = "true" ] ; then
+unInstall
+clear
+  echo ""
+  echo "缺失文件，安装失败！！！"
+  echo "错误提示："${errorMsg}
+  exit 0
+else
+clear
+echo ""
+#service ss5 start
+if [[ ${newVersion} = "7" ]] ; then
+systemctl daemon-reload
+fi
 
-# if [ "$isError" = "true" ] ; then
-# unInstall
-# clear
-#   echo ""
-#   echo "缺失文件，安装失败！！！"
-#   echo "错误提示："${errorMsg}
-#   echo "发送邮件反馈bug ：wyx176@gmail.com"
-#   echo "或者添加Telegram群反馈"
-#   echo "Telegram群：t.me/Socks55555"
-#   exit 0
-# else
-# clear
-# echo ""
-# #service ss5 start
-# if [[ ${newVersion} = "7" ]] ; then
-# systemctl daemon-reload
-# fi
 # service ss5 start
-# echo ""
-# echo "Socks5安装完毕！"
-# echo ""
-# echo "输入"s5"启动Socks5控制面板"
-# echo ""
-# echo "默认用户名: "${uname}
-# echo "默认密码  : "${upasswd}
-# echo "默认端口  : "${port}
-# echo ""
-# echo "添加Telegram群组@Socks55555及时获取更新"
-# echo ""
-# exit 0
-# fi
-# }
+
+echo ""
+echo "Socks5安装完毕！"
+echo ""
+
+echo "默认用户名: Super1 Super2"
+echo "默认密码  : ECYnFg6TqsoUFIO"
+echo "默认端口  : 55555"
+echo ""
+echo "添加Telegram群组@Socks55555及时获取更新"
+echo ""
+exit 0
+fi
+}
 
 #6.卸载
 unInstall(){
