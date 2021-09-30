@@ -123,10 +123,6 @@ echo ""
 
 echo "默认用户名: Super1 Super2"
 echo "默认密码  : ECYnFg6TqsoUFIO"
-echo "默认端口  : 55555"
-echo ""
-echo "添加Telegram群组@Socks55555及时获取更新"
-echo ""
 exit 0
 fi
 }
@@ -152,4 +148,4 @@ Clear
 Download
 InstallSock5
 InstallPanel
-# check
+check
