@@ -115,7 +115,7 @@ InstallPanel()
 # mv /root/Socks5/version.txt /etc/opt/ss5/
 # mv /root/Socks5/ss5 /etc/sysconfig/
 # mv /root/Socks5/s5 /usr/local/bin/
-chmod +x /usr/local/bin/s5
+# chmod +x /usr/local/bin/s5
 
 #设置默认用户名、默认开启帐号验证
 confFile=/etc/opt/ss5/ss5.conf
