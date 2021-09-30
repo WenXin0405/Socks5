@@ -53,58 +53,58 @@ if [[ ${OS} == Debian ]];then
     
 fi
 
-# #1.清理旧环境和配置新环境
-# Clear(){
-# unInstall
-# clear
-# echo "旧环境清理完毕！"
-# echo ""
-# echo "安装Socks5所依赖的组件,请稍等..."
-# yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel
-# yum update -y nss curl libcurl 
+#1.清理旧环境和配置新环境
+Clear(){
+unInstall
+clear
+echo "旧环境清理完毕！"
+echo ""
+echo "安装Socks5所依赖的组件,请稍等..."
+yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel
+yum update -y nss curl libcurl 
 
-# #配置环境变量
-# sed -i '$a export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin' ~/.bash_profile
-# source ~/.bash_profile
+#配置环境变量
+sed -i '$a export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin' ~/.bash_profile
+source ~/.bash_profile
 
-# #关闭防火墙
-# newVersion=`cat /etc/redhat-release|sed -r 's/.* ([0-9]+)\..*/\1/'`
-# if [[ ${newVersion} = "7" ]] ; then
-#  systemctl stop firewalld
-#  systemctl disable firewalld
+#关闭防火墙
+newVersion=`cat /etc/redhat-release|sed -r 's/.* ([0-9]+)\..*/\1/'`
+if [[ ${newVersion} = "7" ]] ; then
+ systemctl stop firewalld
+ systemctl disable firewalld
  
-#  elif [[ ${newVersion} = "6" ]] ;then 
-#  service iptables stop
-#  chkconfig iptables off
-#  else
-#  echo "Exception version"
-# fi
-# }
+ elif [[ ${newVersion} = "6" ]] ;then 
+ service iptables stop
+ chkconfig iptables off
+ else
+ echo "Exception version"
+fi
+}
 
-# #2.下载Socks5服务
-# Download()
-# {
-# echo ""
-# echo "下载Socks5服务中..."
-# cd  /root
-# git clone https://github.com/wyx176/Socks5
-# }
+#2.下载Socks5服务
+Download()
+{
+echo ""
+echo "下载Socks5服务中..."
+cd  /root
+git clone https://github.com/wyx176/Socks5
+}
 
 
-# #3.安装Socks5服务程序
-# InstallSock5()
-# {
-# echo ""
-# echo "解压文件中..."
-# cd  /root/Socks5
-# tar zxvf ./ss5-3.8.9-8.tar.gz
+#3.安装Socks5服务程序
+InstallSock5()
+{
+echo ""
+echo "解压文件中..."
+cd  /root/Socks5
+tar zxvf ./ss5-3.8.9-8.tar.gz
 
-# echo "安装中..."
-# cd /root/Socks5/ss5-3.8.9
-# ./configure
-# make
-# make install
-# }
+echo "安装中..."
+cd /root/Socks5/ss5-3.8.9
+./configure
+make
+make install
+}
 
 # #4.安装控制面板配置参数
 # InstallPanel()
@@ -205,25 +205,25 @@ fi
 # fi
 # }
 
-# #6.卸载
-# unInstall(){
-# service ss5 stop
-# rm -rf /run/ss5
-# rm -f 	/run/lock/subsys/ss5
-# rm -rf /etc/opt/ss5
-# rm -f /usr/local/bin/s5
-# rm -rf 	/usr/lib/ss5
-# rm -f /usr/sbin/ss5
-# rm -rf /usr/share/doc/ss5
-# rm -rf /root/ss5-3.8.9
-# rm -f /etc/sysconfig/ss5
-# rm -f /etc/rc.d/init.d/ss5
-# rm -f /etc/pam.d/ss5
-# rm -rf /var/log/ss5
-# }
+#6.卸载
+unInstall(){
+service ss5 stop
+rm -rf /run/ss5
+rm -f 	/run/lock/subsys/ss5
+rm -rf /etc/opt/ss5
+rm -f /usr/local/bin/s5
+rm -rf 	/usr/lib/ss5
+rm -f /usr/sbin/ss5
+rm -rf /usr/share/doc/ss5
+rm -rf /root/ss5-3.8.9
+rm -f /etc/sysconfig/ss5
+rm -f /etc/rc.d/init.d/ss5
+rm -f /etc/pam.d/ss5
+rm -rf /var/log/ss5
+}
 
-# Clear
-# Download
-# InstallSock5
+Clear
+Download
+InstallSock5
 # InstallPanel
 # check
