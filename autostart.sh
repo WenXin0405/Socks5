@@ -79,20 +79,8 @@ ipAdd2="$(curl -s 169.254.169.254/metadata/v1/interfaces/public/0/anchor_ipv4/ad
 echo "ipAdd1:"${ipAdd1}
 echo "ipAdd2:"${ipAdd2}
 
-chmod +x /etc/init.d/ss5
-
-if [ ! -d "/var/run/ss5/" ];then
-mkdir /var/run/ss5/
-echo "create ss5 success!"
-else
-echo "/ss5/ is OK!"
-fi
-ss5 "-u Super1 -b ${ipAdd1}:5558"
-ss5 "-u Super2 -b ${ipAdd2}:5558"
-
-echo "5558!"
 #添加开机启动
-
+chmod +x /etc/init.d/ss5
 # chkconfig --add ss5
 # chkconfig --level 345 ss5 on
 # confFile=/etc/rc.d/init.d/ss5
@@ -101,10 +89,12 @@ echo "5558!"
 # sed -i '18c [[ ${NETWORKING} = "no" ]] && exit 0' $confFile
 
 #判断ss5文件夹是否存在、
-
-# autostart
-
-
+if [ ! -d "/var/run/ss5/" ];then
+mkdir /var/run/ss5/
+echo "create ss5 success!"
+else
+echo "/ss5/ is OK3333!"
+fi
 }
 
 #5.检测是否安装完整
