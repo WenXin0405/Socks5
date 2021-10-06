@@ -121,9 +121,6 @@ ipAdd1="$(curl -s 169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)"
 ipAdd2="$(curl -s 169.254.169.254/metadata/v1/floating_ip/ipv4/ip_address)"
 echo ${ipAdd1}"|1080|Super1|ECYnFg6TqsoUFIO|2021-10-28"
 echo ${ipAdd2}"|1080|Super2|ECYnFg6TqsoUFIO|2021-10-28"
-echo ""
-echo ""
-echo ""
 exit 0
 fi
 }
